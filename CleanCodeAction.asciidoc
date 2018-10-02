@@ -1,0 +1,308 @@
+= Clean Code (notes de préparation)
+Author Name
+:doctype: article
+:encoding: utf-8
+:lang: fr
+:toc: left
+:numbered:
+
+
+Objectifs de cette action:
+
+* sensibiliser les utilisateurs de code que le code est un outil très efficace si l'on en prend soin.
+* que le code s'améliore au fur et à mesure
+
+
+== En vrac
+
+Un bon code se lit aisément, sans avoir à faire des contorsions cérébrales, presque à haute voix.
+
+*Interaction* qui connait la programmation objet ? Qui pratique la programmation objet ?
+
+Ne pas mettre tous les niveaux d'abstraction au même niveau, ne pas les mélanger.
+
+
+====
+
+Quand vous notez comment faire un gâteau, vous écrivez
+
+* mélanger 1kg de farine avec 100 g de sucre et 2 oeuf
+
+Vous n'écrivez pas
+
+* trouvez un fournisseur de farine
+* être sur que le fournisseur de farine a bien planté son blé
+
+TODO
+
+====
+
+.Image du processeur humain.
+****
+
+Le premier processeur c'est le cerveau !
+Ecrivez du code pour des humains.
+Tenez compte de ses capacités réduites.
+
+Un code est plus lu qu'écrit.
+
+****
+== Pourquoi écrire un bon code
+
+* Productivité vs time
+* Prendre le temps d'aller vite
+** Approfondir ses connaissances, avoir une base sûr, ouvrir un livre de python, lire la documentation
+
+
+== Boy Scout Rule
+
+== Principe de moindre surprise
+
+
+[IMPORTANT]
+====
+
+Avoid mental burden
+
+====
+
+Imaginez le nombre d'étape nécessaires à la compréhension de quelques lignes de code. En fait, ce qui est important, c'est avant tout de comprendre 
+ce que le code est censé faire, avant même de savoir si il le fait bien.
+
+Les  indirections sont là pour nous simplifier la vie, pas pour la rendre plus complexe.
+
+De même que nous ne manipulons pas de pointeurs, mais des variables pour éviter de noter dans notre tête "Ah oui, c'est dans cette case mémoire que je 
+le nombre de chatons que je suis en train de compter"
+
+De même, il ne faut se dire "Ah oui, c'est dans "n" que je range le nombre de chatons que je suis en train de compter"
+
+
+== Le nommage (Chapitre II)
+
+Donner un nom aux choses, c'est les faire exister.
+
+.Règle du périmètre
+[INFO]
+====
+
+Un nom de variable peut être d'autant plus court que sa définition est proche et sa portée est courte, ou autrement dit que tout est accesible en 1 coup d'oeil.
+
+i.e. dans une boucle très courte, le nom  de la variable peut être très court
+
+[code]
+-----
+for(int i = 0; i < kittenList.length; i++) {
+   println( kittenList[i]) ;
+}
+-----
+
+[quote,Clean Code p22]
+____
+The length of a name should correspond to the size of its scope
+____
+
+Mais si la variable est utilisée en plusieurs endroits, (tout n'est plus visible en un coup d'oeil) alors son nom doit être significatif et lever tout ambiguiité
+====
+
+
+Attention aux langages au typage dynamique (Python) : autant certains langage permettent, à travers le typage statique, de lever bien des ambiguïtés, autant les langages (python) nécessite d'être très précis sur la nature des objets
+
+[source,python]
+----
+authors = books.get_authors()
+... lecture par ordre
+----
+
+
+=== Utiliser des noms révélateurs et significatifs
+
+A aucun moment, vous, ou la personne qui relit votre code, ne devait vous demander :"au fait c'est quoi déjà cette variable | fonction | classe | whatever ?"
+Chassez, autant  que possible, l'implicite.
+
+Ne pas introduire de la désinformation
+
+* évitez les noms trop courts (et il existe des auto-complètes sur tous les bon outils (CTRL+P sur Vim) [insérer vidéo ici)
+* Attention aux noms avec de faibles différences (autant dire qu'on peut les confondre)
+* Eviter l'usage du L en minuscule et du O en majuscule (grand classique) quand il peut y avoir ambiguïté.
+
+=== Faire des distinctions utiles et significatives
+
+
+=== Utiliser des noms prononçables
+
+Pouvoir dire les choses, c'est pouvoir en parler !
+
+====
+"Oui, mais si tu incrémentes redIndHR avant de le passer à 
+====
+
+
+[source,java]
+----
+class DtaRcrd102 {
+    private Date genymdhms;
+    private Date modymdhms;
+    private final String pszqint = "102";
+/* ... */
+};
+
+----
+
+[source,java]
+----
+to
+class Customer {
+    private Date generationTimestamp;
+    private Date modificationTimestamp;;
+    private final String recordId = "102";
+/* ... */
+};
+----
+
+
+==== Utiliser des noms searchables
+
+* Faire une analogie avec les recherches de Google, genre "projet REGARDS"
+
+==== Eviter les conventions inutiles
+
+* Dans un système fortement typé, les conventions (convention hongroise, préfix,  ...) sont peu utiles.
+* Dans un système faiblement typé (ou typage dynamique, python quoi !), cela peu présenter un intérêt, mais attention, c'est une charge de maintenance supplémentaire.
+
+Pour les plus avancées, on peut considérer que différencier une interface d'une classe concrète n'apporte rien.
+
+
+=== Avoid mental mapping (formule nécessaire)
+
+* éviter les variables à un caractère (sauf les boucles, par c'est une convention, principe de moindre surprise respecté)
+
+Il est déjà compliqué de maintenir un modèle informatisé d'un problème donné, inutile de se compliquer la vie en maintenant, dans sa tête, un modèle du modèle informatisé ! Respecter le principe de moindre surprise, limiter les ambiguïtés.
+
+TODO : inclure exemple d'un code astro.
+
+[quote,Code Clean p25]
+____
+One difference between a smart programmer and a professional programmer is that
+the professional understands that clarity is king. Professionals use their powers for good
+and write code that others can understand.
+____
+
+
+=== Principes de nommage
+
+* Les objets, structures, classes sont des *noms*
+* Les méthodes, les fonctions sont des *verbes*
+
+Et des verbes intelligibles, pas des noms de code pour initiés
+
+[source,python]
+----
+def m2f(r):
+    r.pos = f
+----
+
+[source,python]
+----
+def move_robot_to_front(robot):
+    robot.position = front_position
+----
+
+[source,java]
+----
+void m2f(Robot r){
+    r.pos = f;
+}
+----
+
+[source,java]
+----
+void moveRobotToFront(Robot robot){
+    robot.position = front.position;
+}
+----
+
+
+=== Ne faites pas le malin
+
+* Privilégier la clarté sur l'humour
+
+====
+
+En DEUG (L1 en ancien françois), je programmais des boucles avec une close de maintient
+
+TODO : histoire de patta_blanca
+
+====
+
+=== Prendre un mot par concept
+
+ZAP
+
+=== Faire un code _skimmable_ (navigable, balayable)
+
+* principe de délégation
+
+=== Ne pas avoir peu de renommer
+
+Si la compréhension y gagne, alors le code s'améliore.
+
+== Functions
+
+La première règle c'est qu'une fonction doit être petite
+La seconde c'est qu'elle doit être encore plus petite
+
+
+=== Do One Thing
+
+[quote,]
+____
+FUNCTIONS SHOULD DO ONE THING. 
+THEY SHOULD DO IT WELL.
+THEY SHOULD DO IT ONLY .
+____
+
+
+Chaque fonction porte une responsabilité, une seule.
+Chaque fonction pilote, gère son petit monde, mais le gère bien.
+Chaque fonction est comme un système qui pilote des sous-systèmes tel que, si la politique de pilotage change, on modifie le système, ou si l'implantation change, on change le sous-sytème 
+Un conducteur tourne un volant, le volant tourne une crémaillère OU un verrin, 
+
+[source,]
+----
+def run_arrival_and_departur_of_a_train(train) :
+    TDOD
+    
+    ici décrire toutes les opérations nécessaires pour l'arrivé et le départ du train
+----
+
+
+
+.Image de l'atomicité
+****
+Une façon traditionnelle d'introduire une fonction, c'est de dire qu'elle est une forme de _factorisation_ du code, pour éviter les _duplications_: et c'est vrai.
+
+Mais c'est aussi une façon d'isoler un comportement, une action.
+
+De même qu'une variable sert à définir ou isoler un _état_, une fonction sert à isoler _une action_.
+
+
+L'intérêt d'isoler, c'est de rendre plus manipulable, plus identifiable, plus testable et maintenanble une _action_.
+****
+
+[quote,]
+____
+So, another way to know that a function is doing more than “one thing” is if you can
+extract another function from it with a name that is not merely a restatement of its implementation [G34].
+____
+
+=== Un seul niveau d'abstraction par fonction
+
+Ici replacer le gâteau.
+
+
+
+[quote,]
+____
+Mixing levels of abstraction within a function is always confusing. Readers may not
+be able to tell whether a particular expression is an essential concept or a detail.
+____
