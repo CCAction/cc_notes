@@ -22,20 +22,11 @@ Un bon code se lit aisément, sans avoir à faire des contorsions cérébrales, 
 Ne pas mettre tous les niveaux d'abstraction au même niveau, ne pas les mélanger.
 
 
-====
+[quote,Martin Fowler]
+____
+"Any fool can write code that a computer can understand. Good programmers write code that humans can understand."
+____
 
-Quand vous notez comment faire un gâteau, vous écrivez
-
-* mélanger 1kg de farine avec 100 g de sucre et 2 oeuf
-
-Vous n'écrivez pas
-
-* trouvez un fournisseur de farine
-* être sur que le fournisseur de farine a bien planté son blé
-
-TODO
-
-====
 
 .Image du processeur humain.
 ****
@@ -286,7 +277,7 @@ Mais c'est aussi une façon d'isoler un comportement, une action.
 De même qu'une variable sert à définir ou isoler un _état_, une fonction sert à isoler _une action_.
 
 
-L'intérêt d'isoler, c'est de rendre plus manipulable, plus identifiable, plus testable et maintenanble une _action_.
+L'intérêt d'isoler, c'est de rendre plus manipulable, plus identifiable, plus testable et maintenable une _action_.
 ****
 
 [quote,]
