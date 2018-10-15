@@ -288,9 +288,92 @@ ____
 
 === Un seul niveau d'abstraction par fonction
 
-Ici replacer le gâteau.
+Pour illustrer le problème, imaginons que vous écriviez une recette - après tout un programme n'est qu'une recette améliorée - pour faire une tarte aux pommes.
+
+Vous écririez 
+
+****
+. Etape 1
+  .. Pelez et coupez les pommes en fines tranches
+. Etape 2
+  .. Dans un saladier, mélangez le sucre, les oeufs, le sucre vanillé
+. Etape 3
+  .. la crème fraîche
+. Etape 4
+  .. Etalez la pâte dans un moule à tarte et piquez le fond à l'aide d'une fourchette. Disposez les pommes sur la pâte et versez le tout sur les pommes (ou versez uniquement la crème)
+. Etape 5
+  .. Puis disposer les lamelles de pommes roulées sur elles-même en roses.
+. Etape 6
+  .. Enfournez environ 30 minutes, jusqu'à ce que la tarte prenne une belle couleur dorée.
+. Etape 7
+  .. Déguster
+  
+_(source https://www.marmiton.org/recettes/recette_tarte-aux-pommes-a-l-alsacienne_11457.aspx[Marmiton])_
+****
+
+Vous n'écririez pas ?
+
+****
+
+. Prendre un éplucheur, dans le tiroir, ou dans le lave-vaisselle ou dans l'évier si il n'est pas trop sale.
+. Si l'éplucheur est trop sale, prendre le liquide vaisselle à côté de lévier, ou sous l'évier.
+. Si il n'y a pas de dessous d'évier, emmer*der la voisinne ou le voisin à condition qu'il y ait une voisine ou un voisin proche de moins de 500 mêtres, sinon arrêter la recette ou commander du liquide vaissel à la fnac ou sur amazon si vous avez un compte, sinon mettre ses chaussures et allez à la superette.
+. Prendre la première pomme, de forme ronde ou assimilable, la tenir dans sa main, et l'éplucheur dans l'autre.
+.. Si vous n'avez qu'une main, demander au voisin, ou à la voisine, distant de moins de 500 m, de tenir ou le couteau ou la pomme.
+. Eplucher la pomme avec une épaisseur entre 2 et 5 mm. 
+. Continuer jusqu'à épuisement des pommes ou du voisin ou de la voisine.
+. tourner la page du livre, ou réveiller la tablette ou demander au voisin ou à la voisine de lire la suite. 
+. (...)
+
+****
 
 
+Pourquoi vous ne le feriez pas ? Parce que vous perdriez dans les détails, vous seriez incapable de distinguer l'essentiel du futile, le quoi du comment.
+
+****
+Il ne faut pas mélanger les niveaux d'abstraction et perdre le lecteur dans des nuées de détails.
+**** 
+
+La recette informatisée s'écrirait
+
+[source,python]
+----
+
+def make_apple_pie() :
+
+    ingredients = Ingredients()
+    cook = Cook()
+    
+    bowl = cook.get_bowl()
+    pie_pan = cook.get_pie_pan()
+    oven = cook.get_oven()
+    
+    cook.load_ingredients(ingredient)
+    
+    cook.cut_apples_into_thin_slices(ingredient)
+    
+    cook.mixup_sugar_eggs_and_vanilla(bowl, ingredients)
+    cook.mixup_sour_cream(bowl, ingredients)
+    
+    cook.spread_the_dough(pie_pan)
+    cook.stitch_the_dough(pie_pan)
+    
+    cook.pour_mixup_on_apples(pie_pan, ingredients)
+    cook.dispose_some_apples_on_dought(pie_pan, ingredients)
+
+    cook.bake_into_oven(oven, pie_pan)
+    cook.wait_for_well_cooked(oven)
+    
+    apple_pie = cook.get_ou_of_oven()
+    
+
+ class Cook():
+
+ 	def get_bowl():
+ 	    ....
+ 	def get_pie_pan():
+ 		....
+----
 
 [quote,]
 ____

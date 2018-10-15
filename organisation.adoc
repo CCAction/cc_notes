@@ -1,0 +1,34 @@
+= Objectif de l'action CC (nom temporaire)
+:doctype: article
+:encoding: utf-8
+:lang: fr
+:toc: left
+:numbered:
+
+
+== Objectifs 
+
+Les objectifs (en vrac pour l'instant) sont 
+
+* sensibiliser aux bonnes pratiques d'écriture de code, en nous basant sur l’ouvrage Clean Code de Robert Martin (entre autres)
+* s'adresser aux producteurs de code dont ce n'est pas la fonction principale (mais qui en fournissent un volume critique )
+** les chercheurs
+** doctorants et post-docs
+** développeurs débutants
+** et toutes les personnes intéressées
+* Etre pragmatiques
+* monter l'action en mettant dans la boucle 
+** les associations de doctorants
+** l'université
+** les établissements ? (CNRS, INRIA, autres ? )
+* What Every Computer Scientist Should Know About Floating-Point Arithmetic
+* Rudiments d'informatique reproductible
+* Tests unitaires &starf;&starf;&starf;
+* Méthodologie (attention somnifère et guerre de chapelles :) )
+* Gestion de version
+
+
+== Format
+
+Pour l'instant nous partons sur 1 journée.
+
